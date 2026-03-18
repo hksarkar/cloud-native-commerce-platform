@@ -1,30 +1,25 @@
+// src/app/login/page.tsx
 "use client";
 
 import { useState } from "react";
-import { api } from "../../services/api";
+import { useAuth } from "@/features/auth/hooks/useAuth";
 
 export default function LoginPage() {
+  const { handleLogin, loading } = useAuth();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleLogin = async () => {
-    try {
-      const res = await api.post("/api/auth/login", {
-        email,
-        password,
-      });
-      console.log(res.data);
-    } catch (err) {
-      console.error(err);
-    }
+  const onSubmit = async () => {
+    await handleLogin(email, password);
+    alert("Login success (mock)");
   };
 
   return (
-    <div className="flex flex-col gap-4 p-10 max-w-md">
-      <h1 className="text-2xl font-bold">Login</h1>
+    <div>
+      <h1>Login</h1>
 
       <input
-        className="border p-2"
         placeholder="Email"
         value={email}
         onChange={(e) => setEmail(e.target.value)}
@@ -32,14 +27,13 @@ export default function LoginPage() {
 
       <input
         type="password"
-        className="border p-2"
         placeholder="Password"
         value={password}
         onChange={(e) => setPassword(e.target.value)}
       />
 
-      <button onClick={handleLogin} className="bg-black text-white p-2">
-        Login
+      <button onClick={onSubmit} disabled={loading}>
+        {loading ? "Logging in..." : "Login"}
       </button>
     </div>
   );
