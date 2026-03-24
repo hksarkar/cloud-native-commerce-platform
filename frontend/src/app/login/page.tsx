@@ -3,9 +3,11 @@
 
 import { useState } from "react";
 import { useAuth } from "@/features/auth/hooks/useAuth";
+import { useRouter } from "next/navigation";
 
 export default function LoginPage() {
   const { handleLogin, loading } = useAuth();
+  const router = useRouter();
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +15,7 @@ export default function LoginPage() {
   const onSubmit = async () => {
     await handleLogin(email, password);
     alert("Login success (mock)");
+    router.push("/dashboard");
   };
 
   return (
