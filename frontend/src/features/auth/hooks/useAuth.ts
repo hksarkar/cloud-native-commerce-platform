@@ -6,6 +6,7 @@ import { useAuthContext } from "../context/AuthContext";
 export const useAuth = () => {
   const [loading, setLoading] = useState(false);
   const { setAuth } = useAuthContext();
+  //Login Function
   const handleLogin = async (email: string, password: string) => {
     try {
       setLoading(true);
@@ -25,5 +26,11 @@ export const useAuth = () => {
     }
   };
 
-  return { handleLogin, loading };
+  //Logout function
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setAuth(false);
+  };
+
+  return { handleLogin, handleLogout, loading };
 };
