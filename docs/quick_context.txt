@@ -1,0 +1,8 @@
+I am building a cloud-native commerce platform using Next.js (App Router), TypeScript, Node.js (planned), MySQL, Docker, and microservices architecture.
+
+Progress:
+- Day 1–3: Setup, architecture, login flow with custom hooks
+- Day 4: Auth context and protected routes
+- Day 5: Logout, navbar, loading state
+
+Start Day 6: Form validation, error handling, and UX improvements. Guide me step-by-step with file paths.
